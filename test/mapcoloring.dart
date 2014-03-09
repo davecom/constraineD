@@ -1,5 +1,4 @@
 import "package:constrained/constrained.dart";
-import 'package:unittest/unittest.dart';
 
 class MapColoringConstraint extends BinaryConstraint {
 

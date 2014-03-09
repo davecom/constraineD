@@ -1,7 +1,5 @@
 name: constrained
-version: 0.0.1
+version: 0.0.2
 author: David Kopec <david@oaksnow.com>
 description: Constraint Satisfaction Problem Solver for Dart
 homepage: https://github.com/davecom/constraineD
-dependencies:
-  unittest: '>=0.9.3'
