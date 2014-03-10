@@ -7,4 +7,4 @@ It has no external dependencies and currently works. It is quite slow due to uni
 It does however support the MRV optimization.
 
 ## Examples
-There are examples of SEND + MORE = MONEY and the Australian Map Coloring problems in the test directory.
+There are examples of SEND + MORE = MONEY, the Australian Map Coloring Problem, and a couple circuit board layout problems in the *test* directory.
