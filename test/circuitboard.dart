@@ -1,5 +1,6 @@
 import "package:constrained/constrained.dart";
 import "dart:math";
+import "dart:async";
 
 //a class to use as a variable for the circuit board
 //a component of the circuit board
@@ -128,15 +129,18 @@ void main() {
 
   //run the solution and calculate the time it took
   Stopwatch stopwatch = new Stopwatch()..start();
-  Map solution = backtrackingSearch(cb_csp, {}, mrv: true);
-  print("Took " + stopwatch.elapsed.inSeconds.toString() + " seconds to solve.");
+  backtrackingSearch(cb_csp, {}, mrv: true).then((Map solution) {
+    print("Took " + stopwatch.elapsed.inSeconds.toString() + " seconds to solve.");
 
-  if (solution == null) {
-    print("No solution found!");
-  } else {
-    print(solution);
-    print("Found a solution on the " + board_width.toString() + "x" +
-        board_height.toString() + "grid:");
-    print_cb_solution(solution, board_width, board_height);
-  }
+      if (solution == null) {
+        print("No solution found!");
+      } else {
+        print(solution);
+        print("Found a solution on the " + board_width.toString() + "x" +
+            board_height.toString() + "grid:");
+        print_cb_solution(solution, board_width, board_height);
+      }
+  });
+
+  
 }

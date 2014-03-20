@@ -49,7 +49,8 @@ void main() {
 
   Stopwatch stopwatch = new Stopwatch()
     ..start();
-  Map solution = backtrackingSearch(mapCSP, {});
-  print(stopwatch.elapsedMicroseconds);
-  print(solution);
+  backtrackingSearch(mapCSP, {}).then((solution) {
+    print(stopwatch.elapsedMicroseconds);
+    print(solution);
+  });
 }

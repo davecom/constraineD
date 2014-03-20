@@ -60,12 +60,14 @@ bool isConsistent(var variable, var value, Map assignment, CSP csp) {
   return true;
 }
 
+final Future nullFuture = new Future.value(null);  // bit of a hack
+
 /// the meat of the backtrack algorithm - a recursive depth first search
 /// Returns the assignment, or null if none can be found
-Map backtrackingSearch(CSP csp, Map assignment, {bool mrv: false, bool
+Future<Map> backtrackingSearch(CSP csp, Map assignment, {bool mrv: false, bool
     mac3: false, bool lcv: false}) {
   // assignment is complete if it has as many assignments as there are variables
-  if (assignment.length == csp.variables.length) return assignment;
+  if (assignment.length == csp.variables.length) return new Future.value(assignment);
 
   // get a var to assign
   var variable = selectUnassignedVariable(assignment, csp, mrv);
@@ -92,14 +94,13 @@ Map backtrackingSearch(CSP csp, Map assignment, {bool mrv: false, bool
                     
                     if (result != False) return result; */
       } else {
-
-        Map result = backtrackingSearch(csp, assignment, mrv: mrv, mac3: mac3, lcv: lcv);
-        if (result != null) return result;
+        Future<Map> result = backtrackingSearch(csp, assignment, mrv: mrv, mac3: mac3, lcv: lcv);
+        if (result != nullFuture) return result;
       }
     }
 
     //substitution for removing everything
     assignment = oldAssignment;
   }
-  return null;
+  return nullFuture;
 }
